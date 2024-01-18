@@ -51,7 +51,9 @@ const pinkPrice = .55
 
 // CODE HERE
 
-
+for(let i = 0; fujiAcres.length > i; i++) {
+    console.log(totalAcres)
+}
 
 
 
