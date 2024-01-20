@@ -53,7 +53,7 @@ const pinkPrice = .55
 
 let totalAcres = 0;
 
-for (let i = 0; i < fujiAcres.length; i++) {
+for (let i = 0; i < fujiAcres.length; i++) { //.length is used to determine the number of elements in the array
   totalAcres += fujiAcres[i] + galaAcres[i] + pinkAcres[i];
 }
 
@@ -74,7 +74,7 @@ console.log(`Total Acres Picked: ${totalAcres}`);
 // CODE HERE
 
 const daysInWeek = fujiAcres.length;
-const averageDailyAcres = totalAcres / daysInWeek;
+const averageDailyAcres = totalAcres / daysInWeek; //divide totalAcres by daysInWeek
 
 console.log(`Average Acres Picked Per Day: ${averageDailyAcres}`);
 
@@ -112,9 +112,12 @@ let acresLeft = 174
 let days = 0
 
 // CODE HERE
-
-
-
+while (acresLeft > 0) {
+    days++;
+    acresLeft -= averageDailyAcres; // subtract the daily average
+  }
+  
+console.log(`It will take ${days} days to pick all the apples.`);
 // PROBLEM 4
 
 /*
@@ -145,10 +148,17 @@ let days = 0
 // let galaTons =
 // let pinkTons =
 
+let fujiTons =
+let galaTons =
+let pinkTons =
 
+const fujiTons = fujiAcres.slice().map(acres => acres * 6.5); //using slice creates a shallow copy of the arrays. This ensures that the original arrays remain unchanged. The map method is used to calculate the daily tons picked for each variety.
+const galaTons = galaAcres.slice().map(acres => acres * 6.5);
+const pinkTons = pinkAcres.slice().map(acres => acres * 6.5);
 
-
-
+console.log('Daily Tons Picked for Fuji:', fujiTons);
+console.log('Daily Tons Picked for Gala:', galaTons);
+console.log('Daily Tons Picked for Pink:', pinkTons);
 
 // PROBLEM 5
 
@@ -172,7 +182,18 @@ let days = 0
 // let galaPounds =
 // let pinkPounds =
 
+let fujiPounds =
+let galaPounds =
+let pinkPounds =
 
+const poundsPerTon = 2000; // 1 ton is equal to 2000 pounds
+const totalPoundsFuji = fujiTons.reduce((total, tons) => total + tons * poundsPerTon, 0);
+const totalPoundsGala = galaTons.reduce((total, tons) => total + tons * poundsPerTon, 0);
+const totalPoundsPink = pinkTons.reduce((total, tons) => total + tons * poundsPerTon, 0);
+
+console.log('Total Pounds Picked for Fuji:', totalPoundsFuji);
+console.log('Total Pounds Picked for Gala:', totalPoundsGala);
+console.log('Total Pounds Picked for Pink:', totalPoundsPink);
 
 
 
@@ -199,10 +220,17 @@ let days = 0
 // let galaProfit =
 // let pinkProfit =
 
+let fujiProfit =
+let galaProfit =
+let pinkProfit =
 
+const profitFuji = totalPoundsFuji * fujiPrice / 100; // Convert cents to dollars
+const profitGala = totalPoundsGala * galaPrice / 100;
+const profitPink = totalPoundsPink * pinkPrice / 100;
 
-
-
+console.log('Profit from Selling Fuji Apples: $' + profitFuji.toFixed(2));
+console.log('Profit from Selling Gala Apples: $' + profitGala.toFixed(2));
+console.log('Profit from Selling Pink Apples: $' + profitPink.toFixed(2));
 
 // PROBLEM 7
 
@@ -215,3 +243,7 @@ let days = 0
 */
 
 // CODE HERE
+
+const totalProfit = profitFuji + profitGala + profitPink;
+
+console.log('Total Profit from Selling Apples: $' + totalProfit.toFixed(2)); // Display total profit in dollars
